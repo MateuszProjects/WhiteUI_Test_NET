@@ -40,7 +40,7 @@ namespace WhiteUI_Test
             win.Keyboard.HoldKey(KeyboardInput.SpecialKeys.ALT);
             win.Keyboard.Enter("1");
             win.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.ALT);
-            win.Close();
+            app.Close();
         }
 
         [TestMethod]
@@ -61,6 +61,12 @@ namespace WhiteUI_Test
             var textcheckBox = textBox.Text;
 
             Assert.AreEqual(expectation, textcheckBox);
+        }
+
+        [TestMethod]
+        public void TaskTwo()
+        {
+
         }
     }
 }
