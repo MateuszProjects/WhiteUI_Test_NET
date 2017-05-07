@@ -99,7 +99,15 @@ namespace WhiteUI_Test
         public void convert_inch_to_cm()
         {
             // TODO Zadanie3: Sprawdzić konwersję jednostek z cali (2 cale) na centymetry (5.08 cm)
-  
+
+            win.Keyboard.HoldKey(KeyboardInput.SpecialKeys.ALT);
+            win.Keyboard.Enter("2");
+            win.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.ALT);
+
+            ComboBox comboBox = win.Get<ComboBox>(SearchCriteria.ByAutomationId("221"));
+            comboBox.Select("Lenght");
+            comboBox.Click();
+
         }
             
         [TestMethod]
