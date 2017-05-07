@@ -22,12 +22,13 @@ namespace WhiteUI_Test
         [TestInitialize]
         public void init()
         {
-            app = Application.Launch("C:\\Informatyka inżynierska UŚ\\Work\\Windows7-calculator\\calc.exe");
+           
+            app = Application.Launch("C:\\Windows7-calculator\\calc.exe");
             win = app.GetWindow("Calculator");
         }
 
         [TestMethod]
-        public void changeWidnow()
+        public void changeWindow()
         {
             win.Keyboard.HoldKey(KeyboardInput.SpecialKeys.ALT);
             win.Keyboard.Enter("3");
@@ -46,6 +47,10 @@ namespace WhiteUI_Test
         [TestMethod]
         public void TaskOne()
         {
+            // TODO Zadanie1: Przetostować zminaę widoku(programmer) na kalkulatorze za 
+            // pomocą menu. Zamienić liczbę dziesiętną (10) na postać szesnastkową (Hex) i sprawdzić
+            // czy otrzymamy prawidłowy wynik (A)
+
             win.Keyboard.HoldKey(KeyboardInput.SpecialKeys.ALT);
             win.Keyboard.Enter("3");
             win.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.ALT);
@@ -64,8 +69,51 @@ namespace WhiteUI_Test
         }
 
         [TestMethod]
-        public void TaskTwo()
+        public void function_x2()
         {
+            // TODO Zadanie2: Przetestować zmianę widoku (scientiffic) za pomocą klawiatury.
+            // Sprawdzić czy funkcja x^2 (dla x=5) zwróci poprawny wynik 25
+
+            win.Keyboard.HoldKey(KeyboardInput.SpecialKeys.ALT);
+            win.Keyboard.Enter("2");
+            win.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.ALT);
+
+            var expectation = "25";
+
+            Button button5 = win.Get<Button>(SearchCriteria.ByAutomationId("135"));
+            button5.Click();
+            Button button97 = win.Get<Button>(SearchCriteria.ByAutomationId("97"));
+            button97.Click();
+            Button button2 = win.Get<Button>(SearchCriteria.ByAutomationId("132"));
+            button2.Click();
+            Button button121 = win.Get<Button>(SearchCriteria.ByAutomationId("121"));
+            button121.Click();
+
+            Label textBox = win.Get<Label>(SearchCriteria.ByAutomationId("150"));
+            var textBoxData = textBox.Text;
+
+            Assert.AreEqual(expectation, textBoxData);
+        }
+
+        [TestMethod]
+        public void convert_inch_to_cm()
+        {
+            // TODO Zadanie3: Sprawdzić konwersję jednostek z cali (2 cale) na centymetry (5.08 cm)
+  
+        }
+            
+        [TestMethod]
+        public void addFigures()
+        {
+            // TODO Zadanie4: Napisać test dla działania dodawania (4+6=10) korzystając również z innych
+            // kryterów niż automationid oraz klawiatury
+        }
+
+        [TestMethod]
+        public void calcDate()
+        {
+            // TODO Zadanie5: Przetesotwać obliczanie daty. Sprawdzić czy odjęcie od dzisiejszego dnia 6
+            // miesięcy zwróci poprawną date (30 września 2016).
 
         }
     }
