@@ -8,6 +8,8 @@ using TestStack.White.UIItems.Finders;
 using TestStack.White.WindowsAPI;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.ListBoxItems;
+using TestStack.White.UIItems.ListViewItems;
+using System.Threading;
 
 namespace WhiteUI_Test
 {
@@ -100,13 +102,17 @@ namespace WhiteUI_Test
         {
             // TODO Zadanie3: Sprawdzić konwersję jednostek z cali (2 cale) na centymetry (5.08 cm)
 
-            win.Keyboard.HoldKey(KeyboardInput.SpecialKeys.ALT);
-            win.Keyboard.Enter("2");
-            win.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.ALT);
+            win.Keyboard.HoldKey(KeyboardInput.SpecialKeys.CONTROL);
+            win.Keyboard.Enter("U");
 
-            ComboBox comboBox = win.Get<ComboBox>(SearchCriteria.ByAutomationId("221"));
-            comboBox.Select("Lenght");
-            comboBox.Click();
+
+            var comboBox = win.Get<ComboBox>
+                (SearchCriteria.ByAutomationId("221"));
+            comboBox.Select("Length");
+          
+
+
+            Thread.Sleep(5000);
 
         }
             
