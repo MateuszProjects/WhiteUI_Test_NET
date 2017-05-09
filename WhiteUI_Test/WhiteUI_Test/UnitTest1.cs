@@ -68,6 +68,8 @@ namespace WhiteUI_Test
             var textcheckBox = textBox.Text;
 
             Assert.AreEqual(expectation, textcheckBox);
+
+
         }
 
         [TestMethod]
@@ -104,31 +106,91 @@ namespace WhiteUI_Test
 
             win.Keyboard.HoldKey(KeyboardInput.SpecialKeys.CONTROL);
             win.Keyboard.Enter("U");
+            win.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.CONTROL);
+            var expectation = "5,08";
 
-
-            var comboBox = win.Get<ComboBox>
+            ComboBox comboBox = win.Get<ComboBox>
                 (SearchCriteria.ByAutomationId("221"));
             comboBox.Select("Length");
-          
+
+            TextBox textbox = win.Get<TextBox>(SearchCriteria.ByAutomationId("226"));
+            textbox.SetValue(2);
 
 
+            ComboBox combo_inch = win.Get<ComboBox>(SearchCriteria.ByAutomationId("224"));
+            combo_inch.Select("Inch");
+
+
+            ComboBox combo_cm = win.Get<ComboBox>(SearchCriteria.ByAutomationId("225"));
+            combo_cm.Select("Centimeters");
+
+            
+            TextBox value = win.Get<TextBox>(SearchCriteria.ByAutomationId("227"));
+            var wartosc = value.Text;
+
+
+            Assert.AreEqual(expectation, wartosc);
             Thread.Sleep(5000);
-
         }
             
         [TestMethod]
         public void addFigures()
         {
-            // TODO Zadanie4: Napisać test dla działania dodawania (4+6=10) korzystając również z innych
-            // kryterów niż automationid oraz klawiatury
+            // TODO Zadanie4: Napisać test dla działania dodawania (4+6=10) 
+            // korzystając również z innych kryterów niż automationid oraz klawiatury
+            var expectation = "10";
+
+            Button button4 = win.Get<Button>(SearchCriteria.ByText("4"));
+            button4.Click();
+            Button plus = win.Get<Button>(SearchCriteria.ByText("+"));
+            plus.Click();
+            Button button6 = win.Get<Button>(SearchCriteria.ByText("6"));
+            button6.Click();
+            Button suma = win.Get<Button>(SearchCriteria.ByText("="));
+            suma.Click();
+            Label textBox = win.Get<Label>(SearchCriteria.ByText("10"));
+            var textcheckBox = textBox.Text;
+            
+            Assert.AreEqual(expectation,textcheckBox);
+
         }
 
         [TestMethod]
         public void calcDate()
         {
-            // TODO Zadanie5: Przetesotwać obliczanie daty. Sprawdzić czy odjęcie od dzisiejszego dnia 6
-            // miesięcy zwróci poprawną date (30 września 2016).
+            // TODO Zadanie5: Przetesotwać obliczanie daty. 
+            // Sprawdzić czy odjęcie od dzisiejszego dnia 6 miesięcy 
+            // zwróci poprawną date (30 września 2016).
 
+            win.Keyboard.HoldKey(KeyboardInput.SpecialKeys.CONTROL);
+            win.Keyboard.Enter("E");
+            win.Keyboard.LeaveKey(KeyboardInput.SpecialKeys.CONTROL);
+
+            var expectation = "9 listopada 2016";
+
+            ComboBox selectDate = win.Get<ComboBox>(SearchCriteria.ByAutomationId("4003"));
+            selectDate.Select("Add or subtract a period of time");
+
+
+            RadioButton subtract = win.Get<RadioButton>(SearchCriteria.ByAutomationId("4016"));
+            subtract.Click();
+
+            Spinner spinner = win.Get<Spinner>(SearchCriteria.ByAutomationId("4022"));
+            spinner.Increment();
+            spinner.Increment();
+            spinner.Increment();
+            spinner.Increment();
+            spinner.Increment();
+            spinner.Increment();
+
+            Button calculate = win.Get<Button>(SearchCriteria.ByAutomationId("4015"));
+            calculate.Click();
+
+
+            TextBox value = win.Get<TextBox>(SearchCriteria.ByAutomationId("4013"));
+            var wartosc = value.Text;
+
+            Assert.AreEqual(expectation, wartosc);
         }
     }
 }
