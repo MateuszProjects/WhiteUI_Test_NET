@@ -1,2 +1,2 @@
 # WhiteUI_Test_NET
-White UI Test by Kroll Ontrack. Test function Calculator.
+White UI Test by Kroll Ontrack. Test function Calculator Windows 7 .
